@@ -12,7 +12,9 @@
         <tr>
             <th>ID</th>
             <th>Nombre</th>
-            <th>Email</th>
+            <th>correo</th>
+            <th>contraseña</th>
+
             <th>Acciones</th>
         </tr>
         <?php foreach ($users as $user): ?>
