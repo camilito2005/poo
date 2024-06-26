@@ -24,7 +24,7 @@ class Registro {
                 $this->editUser();
                 break;
             case 'update':
-                $this->Crear();
+                $this->editUser();
                 break;
             case 'delete':
                 $this->deleteUser();
