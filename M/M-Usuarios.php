@@ -13,7 +13,7 @@ class Usuarios {
     }
 
     public function Ver($id) {
-        $stmt = $this->pdo->prepare("SELECT * FROM usuarios WHERE id = ?");
+        $stmt = $this->pdo->prepare("SELECT * FROM usuarios WHERE id_usuarios = ?");
         $stmt->execute([$id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
@@ -25,13 +25,13 @@ class Usuarios {
     }
 
     public function Actualizar($id, $data) {
-        $stmt = $this->pdo->prepare("UPDATE usuarios SET nombre = ?, email = ? WHERE id = ?");
+        $stmt = $this->pdo->prepare("UPDATE usuarios SET nombre = ?, email = ? WHERE id_usuarios = ?");
         $stmt->execute([$data['nombre'], $data['email'], $id]);
         return true;
     }
 
     public function Eliminar($id) {
-        $stmt = $this->pdo->prepare("DELETE FROM usuarios WHERE id = ?");
+        $stmt = $this->pdo->prepare("DELETE FROM usuarios WHERE id_usuarios = ?");
         $stmt->execute([$id]);
         return true;
     }
