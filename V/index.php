@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Listado de Usuarios</h1>
-    <a href="index.php?action=create">Nuevo Usuario</a>
+    <a href="./formulario.php">Nuevo Usuario</a>
     <table border="1">
         <tr>
             <th>ID</th>

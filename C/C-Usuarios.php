@@ -2,45 +2,50 @@
 
 require_once './M/M-Usuarios.php';
 
-class Registro {
+class Registro
+{
     private $userModel;
 
-    public function __construct() {
-        global $pdo; 
+    public function __construct()
+    {
+        global $pdo;
         $this->userModel = new Usuarios($pdo);
     }
 
-    public function Opciones() {
+    public function Opciones()
+    {
         $action = isset($_GET['action']) ? $_GET['action'] : 'list';
 
         switch ($action) {
             case 'list':
-                $this->listUsers();
+                $this->ListarUsuarios();
                 break;
             case 'create':
-                $this->createUser();
+                $this->CrearUsuario();
                 break;
             case 'edit':
-                $this->editUser();
+                $this->EditarUsuarios();
                 break;
             case 'update':
-                $this->editUser();
+                $this->EditarUsuarios();
                 break;
             case 'delete':
-                $this->deleteUser();
+                $this->EliminarUsuarios();
                 break;
             default:
-                $this->listUsers();
+                $this->ListarUsuarios();
                 break;
         }
     }
 
-    public function listUsers() {
+    public function ListarUsuarios()
+    {
         $users = $this->userModel->Tabla();
         require 'views/users/index.php';
     }
 
-    public function createUser() {
+    public function CrearUsuario()
+    {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $data = [
                 'nombre' => $_POST['nombre'],
@@ -49,11 +54,12 @@ class Registro {
             $this->userModel->Crear($data);
             header('Location: index.php');
         } else {
-            require 'views/users/create.php';
+            require 'V/formulario.php';
         }
     }
 
-    public function editUser() {
+    public function EditarUsuarios()
+    {
         $id = $_GET['id'];
         $user = $this->userModel->Ver($id);
 
@@ -69,10 +75,10 @@ class Registro {
         }
     }
 
-    public function deleteUser() {
+    public function EliminarUsuarios()
+    {
         $id = $_GET['id'];
         $this->userModel->Eliminar($id);
         header('Location: index.php');
     }
 }
-?>
