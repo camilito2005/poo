@@ -1,25 +1,16 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
-$DB_HOST = ('localhost');
-$PORT = ('5432');
-$DB_NAME = ('poo');
-$DB_USER = ('smartinfo');
-$DB_PASS = ('smartinfo');
+$conexion = pg_connect("host=localhost port=5432 dbname=poo user=smartinfo password=smartinfo");
 
-$conn = pg_connect("host=$DB_HOST port=$PORT dbname=$DB_NAME user=$DB_USER password=$DB_PASS");
-print_r($conn);
-die;
-
-if (!$conn) {
-    echo "Error: No se pudo conectar a PostgreSQL.\n";
+if ($conexion) {
+    echo "Conexión exitosa a la base de datos\n", die;
 } else {
-    echo "Conexión exitosa a PostgreSQL.\n";
-    // Aquí puedes ejecutar consultas u otras operaciones en la base de datos
+    if (!$conexion) {
+        echo "Error: No se ha podido conectar a la base de datos\n", die;
+    }
+    pg_close($conexion);
 }
-
-/*try {
-    $pdo = new PDO("mysql:host=" . $DB_HOST . ";dbname=" . $DB_NAME, $DB_USER, $DB_PASS);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    die("Error: " . $e->getMessage());
-}*/
+?>
