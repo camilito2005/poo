@@ -38,47 +38,51 @@ class Registro
         }
     }
 
-    public function ListarUsuarios()
-    {
+    public function ListarUsuarios(){
         $users = $this->userModel->Tabla();
         require 'views/users/index.php';
     }
 
-    public function CrearUsuario()
-    {
+    public function CrearUsuario(){
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $data = [
                 'nombre' => $_POST['nombre'],
-                'email' => $_POST['email']
+                'email' => $_POST['email'],
+                'contraseña' => $_POST['password']
+
             ];
             $this->userModel->Crear($data);
             header('Location: index.php');
         } else {
-            require 'V/formulario.php';
+            require './V/formulario.php';
         }
     }
 
-    public function EditarUsuarios()
-    {
+    public function EditarUsuarios(){
+
         $id = $_GET['id'];
         $user = $this->userModel->Ver($id);
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $data = [
                 'nombre' => $_POST['nombre'],
-                'email' => $_POST['email']
+                'email' => $_POST['email'],
+                'contraseña' => $_POST['password']
             ];
             $this->userModel->Actualizar($id, $data);
             header('Location: index.php');
         } else {
-            require 'views/users/edit.php';
+            require '../V/editar.php';
         }
     }
 
     public function EliminarUsuarios()
     {
-        $id = $_GET['id'];
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
         $this->userModel->Eliminar($id);
         header('Location: index.php');
+        }
+        
     }
 }

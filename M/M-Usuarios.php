@@ -19,14 +19,14 @@ class Usuarios {
     }
 
     public function Crear($data) {
-        $stmt = $this->pdo->prepare("INSERT INTO usuarios (nombre, email) VALUES (?, ?)");
-        $stmt->execute([$data['nombre'], $data['email']]);
+        $stmt = $this->pdo->prepare("INSERT INTO usuarios (nombre, correr,contraseña) VALUES (?, ?, ?)");
+        $stmt->execute([$data['nombre'], $data['email'],$data['contraseña']]);
         return $this->pdo->lastInsertId();
     }
 
     public function Actualizar($id, $data) {
-        $stmt = $this->pdo->prepare("UPDATE usuarios SET nombre = ?, email = ? WHERE id_usuarios = ?");
-        $stmt->execute([$data['nombre'], $data['email'], $id]);
+        $stmt = $this->pdo->prepare("UPDATE usuarios SET nombre = ?, correo = ? , contraseña = ?  WHERE id_usuarios = ?");
+        $stmt->execute([$data['nombre'], $data['email'] , $data['contraseña'], $id]);
         return true;
     }
 

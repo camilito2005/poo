@@ -1,0 +1,14 @@
+*{
+    margin: 0;
+    padding: 0;
+
+}
+table{
+    width: 100%;
+    border-collapse: collapse;
+    max-width: 700px;
+}
+thead{
+    background: #333;
+    color: #fff;
+}
