@@ -14,13 +14,16 @@
     </div>
 
     <div class="container">
-        <form action="./C/C-Usuarios.php" method="POST">
+        <form action="./C/Controller-U.php" method="POST">
             Nombre: <input class="cajas" type="text" name="nombre"><br>
             Email: <input class="cajas" type="email" name="email"><br>
             Contraseña <input class="cajas" type="password" name="contraseña"><br>
 
             <input class="boton" type="submit" name="enviar" value="Guardar">
         </form>
+        <?php
+        pg_close($conexion);
+        ?>
     </div>
 
 
